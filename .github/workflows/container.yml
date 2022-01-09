@@ -21,12 +21,15 @@ defaults:
 jobs:
   build:
 
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - run: npm install
       - run: npm run build
+
+      - name: ACTIONS_ALLOW_UNSECURE_COMMANDS
+        run: echo 'ACTIONS_ALLOW_UNSECURE_COMMANDS=true' >> $GITHUB_ENV
 
       - uses: shinyinc/action-aws-cli@v1.2
         env:
